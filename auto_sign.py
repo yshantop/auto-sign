@@ -3,13 +3,19 @@ import json
 from datetime import datetime
 import logging
 import os
+from PIL import Image
+import base64
 
 # 配置日志
 logging.basicConfig(
-    filename='auto_sign.log',
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('auto_sign.log'),
+        logging.StreamHandler()
+    ]
 )
+logger = logging.getLogger(__name__)
 
 class AutoSign:
     def __init__(self, login_info):
